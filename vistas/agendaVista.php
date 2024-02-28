@@ -34,18 +34,6 @@
 
     <div class="agenda">
         <div class="agenda-cabecera">
-            <div class="agenda-cabecera-fecha">
-                <div class="agenda-cabecera-dateInput">
-                    <label for="dateInput" class="dateIcon">📅</label>
-                    <input type="date" id="dateInput" class="dateInput">
-                </div>
-                <i class="fas fa-arrow-alt-circle-left" id="prevButton"></i>
-                <!-- <h2 id="currentDate"><?php echo date("d/m/Y"); ?></h2> -->
-                <i class="fas fa-arrow-alt-circle-right" id="nextButton"></i>
-            </div>
-            <div class="agenda-cabecera-crearCita">
-                Crear cita
-            </div>
         </div>
         <div id='calendario' class="agenda-calendario"></div>
 

@@ -14,20 +14,27 @@
 .agenda-cabecera {
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    margin: 20px;
 }
 
-.agenda-cabecera-fecha{
+.agenda-cabecera-fecha {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    width: 75%;
+    width: 100%;
+    flex-direction: row;
 }
 
-.agenda-cabecera-crearCita{
-    width: 20%;
+.agenda-cabecera-fecha-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.agenda-cabecera-fecha-texto {
+margin: 20px;
 }
 
 i {
@@ -45,22 +52,26 @@ i {
   }
 
   .dateInput {
-      display: inline-block;
-      position: absolute;
-      opacity: 0;
-      width: 100%;
-      cursor: pointer;
-      font-size: xx-large;
-      padding: 10px;
-  }
+    display: inline-block;
+    position: absolute;
+    opacity: 0;
+    width: 8%;
+    cursor: pointer;
+    font-size: xx-large;
+}
 
   .dateIcon {
-      display: flex;
-      cursor: pointer;
-      font-size: 24px;
-      justify-content: center;
-      align-items: center;
-  }
+    position: relative;
+    display: flex;
+    cursor: pointer;
+    font-size: 24px;
+    justify-content: center;
+    align-items: center;
+}
+
+.agenda-calendario {
+    height: 100vh;
+}
 
 @media screen and (max-width: 768px) {
     .boxInformacio {
