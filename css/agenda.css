@@ -6,9 +6,23 @@
 
 .select {
     width: 100%;
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+button {
+    background-color: #255980;
+    border-color: #255980;
+    color: white;
+    padding: 5px;
+    font-size: large;
+    margin-right: 5px;
+}
+
+.fas {
+    font-size: xx-large;
+    padding: 5px;
 }
 
 .agenda-cabecera {
@@ -34,12 +48,12 @@
 }
 
 .agenda-cabecera-fecha-texto {
-margin: 20px;
+    margin: 20px;
 }
 
 i {
-    color: #007bff;
-    font-size:xx-large;
+    color: #255980;
+    font-size: xx-large;
 }
 
 .agenda-cabecera-dateInput {
@@ -49,9 +63,9 @@ i {
     height: 24px;
     justify-content: center;
     align-items: center;
-  }
+}
 
-  .dateInput {
+.dateInput {
     display: inline-block;
     position: absolute;
     opacity: 0;
@@ -60,11 +74,11 @@ i {
     font-size: xx-large;
 }
 
-  .dateIcon {
+.dateIcon {
     position: relative;
     display: flex;
     cursor: pointer;
-    font-size: 24px;
+    font-size: xx-large;
     justify-content: center;
     align-items: center;
 }
@@ -73,11 +87,16 @@ i {
     height: 100vh;
 }
 
+td.fc-timegrid-slot.fc-timegrid-slot-lane {
+    padding: 20px;
+}
+
+a.fc-col-header-cell-cushion {
+    font-size: x-large;
+}
+
 @media screen and (max-width: 768px) {
     .boxInformacio {
         grid-template-columns: 1fr;
     }
 }
-
-
-

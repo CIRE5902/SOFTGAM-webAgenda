@@ -21,6 +21,7 @@ h1 {
     font-weight: bold;
     margin: 0;
     color: black;
+    font-size: xx-large;
 }
 
 h2 {
@@ -44,16 +45,17 @@ a {
     font-size: 14px;
     text-decoration: none;
     margin: 15px 0;
+    font-size: large;
 }
 
 button {
     border-radius: 20px;
-    border: 1px solid #4A90E2;
-    background-color: #4A90E2;
+    border: 1px solid #255980;
+    background-color: #255980;
     color: #FFFFFF;
-    font-size: 12px;
+    font-size: small;
     font-weight: bold;
-    padding: 12px 45px;
+    padding: 15px 45px;
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 80ms ease-in;
@@ -73,12 +75,15 @@ input {
     border: none;
     padding: 12px 15px;
     margin: 8px 0;
-    width: 100%;
+    width: 90%;
+    font-size: small;
 }
+
 
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 3fr;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
@@ -90,18 +95,47 @@ input {
 
 }
 
-.container-formularios{
+.container-formulario {
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
-.container-imagen{
+.container-formulario-titulo {
+    margin: 10px;
+}
+
+.container-formulario-login {
+    margin: 10px;
+}
+
+.container-formulario-forgotpwd {
+    margin: 10px;
+}
+
+.container-formulario-loginButton {
+    margin: 10px;
+}
+
+.container-imagen {
     width: 100%;
     background-image: url('../imagenes/login.jpg');
     background-size: cover;
     background-position: center;
     height: 100%;
+}
+
+
+
+
+
+@media screen and (min-width: 800px) {
+    .container {
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        grid-template-rows: 1fr;
+    }
 }

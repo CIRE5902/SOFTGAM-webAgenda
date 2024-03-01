@@ -16,19 +16,22 @@
     <?php include 'partials/header.php'; ?>
 
     <div class="boxInformacio">
-        <select class="select">
+        <!-- <select class="select">
             <option value="doctor1">Doctor 1</option>
             <option value="doctor2">Doctor 2</option>
-        </select>
+        </select> -->
         <select class="select">
             <option value="">Seleccionar Box</option>
-            <option value="box1">Box 1</option>
-            <option value="box2">Box 2</option>
+            <?php foreach ($select as $box): ?>
+        <option value="<?php echo htmlspecialchars($box['Box']); ?>">
+            <?php echo htmlspecialchars($box['NomBox']); ?>
+        </option>
+    <?php endforeach; ?>
         </select>
         <select class="select">
-            <option value="">Seleccionar Turno</option>
-            <option value="turno1">Turno 1</option>
-            <option value="turno2">Turno 2</option>
+            <option value="">Seleccionar Torn</option>
+            <option value="mati">Mati</option>
+            <option value="tarda">Tarda</option>
         </select>
     </div>
 
@@ -43,9 +46,11 @@
     <footer>
 
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src='../fullCalendar/fullcalendar-6.1.11/dist/index.global.min.js'></script>
     <script src='../js/calendar.js'></script>
 </body>
 
 </html>
+
+
+
