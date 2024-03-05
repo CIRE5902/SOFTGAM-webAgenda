@@ -11,4 +11,8 @@ if (isset($_POST['btnAgenda'])) {
     header('Location: agendaControlador.php');
 } 
 
+if (isset($_POST['btnCrear'])) {
+    header('Location: crearCitaControlador.php');
+} 
+
 include __DIR__ . '/../vistas/menuVista.php';

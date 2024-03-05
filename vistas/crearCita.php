@@ -13,12 +13,33 @@
 
 <body>
     <?php include 'partials/header.php'; ?>
-
-    <div class="appointment">
-        <div class="apoointmentDetatils"></div>
-        <div class="patientDetails"></div>
+    <div class="container">
+        <div class="appointment">
+            <div class="appointment-Title"> Crear cita</div>
+            <div class="appointment-Form">
+                <div class="appointmentDetails">werwerwerwe
+                    <div class="appointmentDetails-titulo">
+                        <h2>Detalles cita</h2>
+                    </div>
+                    <div class="appointmentDetails-fecha">
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" id="fecha" name="fecha">
+                        <label for="hora">Hora:</label>
+                        <input type="time" id="hora" name="hora">
+                    </div>
+                    <div class="appointmentDetails-doctor">
+                        <label for="doctor">Doctor:</label>
+                        <select id="doctor" name="doctor">
+                            <option value="">Seleccione un doctor</option>
+                            <option value="1">Doctor 1</option>
+                            <option value="2">Doctor 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="patientDetails">ertertertert</div>
+            </div>
+        </div>
     </div>
-
     <footer>
 
     </footer>
