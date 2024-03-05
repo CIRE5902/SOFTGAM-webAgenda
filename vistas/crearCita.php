@@ -15,9 +15,11 @@
     <?php include 'partials/header.php'; ?>
     <div class="container">
         <div class="appointment">
-            <div class="appointment-Title"> Crear cita</div>
+            <div class="appointment-Title">
+                <h1> Crear cita <h1>
+            </div>
             <div class="appointment-Form">
-                <div class="appointmentDetails">werwerwerwe
+                <div class="appointmentDetails">
                     <div class="appointmentDetails-titulo">
                         <h2>Detalles cita</h2>
                     </div>
@@ -35,8 +37,37 @@
                             <option value="2">Doctor 2</option>
                         </select>
                     </div>
+                    <div class="appointmentDetails-color">
+                        <input type="color" value="#ffffff"></input>
+                    </div>
                 </div>
-                <div class="patientDetails">ertertertert</div>
+                <div class="patientDetails">
+                    <div class="patientDetails-titulo">
+                        <h2>Detalles paciente</h2>
+                    </div>
+                    <div class="patiendDetails-nombre">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" required>
+                    </div>
+
+                    <div class="patiendDetails-nacimiento">
+                        <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                    </div>
+
+                    <div class="patiendDetails-correo">
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="patiendDetails-telefono">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="text" id="telefono" name="telefono" required>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -17,6 +17,11 @@
     padding: 10px;
 }
 
+.appointment-Title {
+    color: #255980;
+    font-weight: bold;
+}
+
 .appointment-Form {
     display: grid;
     grid-template-columns: 1fr; 
@@ -28,10 +33,16 @@
 
 .appointmentDetails {
     background-color: #255980;
+    padding: 10px;
+    color: white;
+    font-size: larger;
 }
 
 .patientDetails {
     background-color:white;
+    padding: 10px;
+    color: #255980;
+    font-size: larger;
 }
 
 @media screen and (min-width: 800px) {
