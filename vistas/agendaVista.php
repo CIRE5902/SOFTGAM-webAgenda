@@ -28,8 +28,8 @@
         </option>
     <?php endforeach; ?>
         </select>
-        <select class="select">
-            <option value="">Seleccionar Torn</option>
+        <select class="select" id="turnoSelect">
+            <option value="diaEntero">Todo el dia</option>
             <option value="mati">Mati</option>
             <option value="tarda">Tarda</option>
         </select>
