@@ -1,6 +1,19 @@
 const agendaCabecera = document.querySelector('.agenda-cabecera');
 const calendarEl = document.getElementById('calendario');
 
+const visitasInput = document.getElementById('visitas');
+const visitasValue = visitasInput.value;
+const visitasObj = JSON.parse(visitasValue);
+console.table(visitasObj);
+
+const allVisitas = visitasObj.map(visita => {
+    const correctDateTime = visita.Hora.replace(/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/, '$1-$2-$3T$4:$5:$6');
+    return {
+        title: visita.NomPacient,
+        start: correctDateTime,
+    };
+});
+
 let calendarCreado = false;
 let calendar;
 let currentDate = new Date();
@@ -24,6 +37,7 @@ function inicializarCalendario() {
                 timeGridWeek: { titleFormat: { month: 'long', year: 'numeric' } },
                 timeGridDay: { titleFormat: { day: 'numeric', month: 'long', weekday: 'long' } }
             },
+            events: allVisitas,
             dateClick: function (info) {
                 currentDate = info.date;
                 updateCurrentDate(currentDate);

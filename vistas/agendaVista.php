@@ -22,11 +22,11 @@
         </select> -->
         <select class="select">
             <option value="">Seleccionar Box</option>
-            <?php foreach ($select as $box): ?>
-        <option value="<?php echo htmlspecialchars($box['Box']); ?>">
-            <?php echo htmlspecialchars($box['NomBox']); ?>
-        </option>
-    <?php endforeach; ?>
+            <?php foreach ($select as $box) : ?>
+                <option value="<?php echo htmlspecialchars($box['Box']); ?>">
+                    <?php echo htmlspecialchars($box['NomBox']); ?>
+                </option>
+            <?php endforeach; ?>
         </select>
         <select class="select" id="turnoSelect">
             <option value="diaEntero">Todo el dia</option>
@@ -41,6 +41,8 @@
         <div id='calendario' class="agenda-calendario"></div>
 
 
+        <input type="hidden" id="visitas" value='<?php echo json_encode($visitas); ?>'>
+
     </div>
     </div>
     <footer>
@@ -51,6 +53,3 @@
 </body>
 
 </html>
-
-
-
