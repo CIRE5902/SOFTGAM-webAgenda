@@ -17,7 +17,8 @@ class visitas
             av.Hora AS Hora,
             av.NomPacient AS NomPacient,
             av.TelefonContacte AS TelefonContacte,
-            b.NomBox AS NomBox
+            b.NomBox AS NomBox,
+            b.Box AS idBox
             FROM
             tbAgendaVisita av
             JOIN

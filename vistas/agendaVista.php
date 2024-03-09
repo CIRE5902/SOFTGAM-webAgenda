@@ -20,7 +20,7 @@
             <option value="doctor1">Doctor 1</option>
             <option value="doctor2">Doctor 2</option>
         </select> -->
-        <select class="select">
+        <select class="select" id="boxSelect">
             <option value="">Seleccionar Box</option>
             <?php foreach ($select as $box) : ?>
                 <option value="<?php echo htmlspecialchars($box['Box']); ?>">
@@ -30,8 +30,8 @@
         </select>
         <select class="select" id="turnoSelect">
             <option value="diaEntero">Todo el dia</option>
-            <option value="mati">Mati</option>
-            <option value="tarda">Tarda</option>
+            <option value="mati">Mañana</option>
+            <option value="tarda">Tarde</option>
         </select>
     </div>
 

@@ -1,16 +1,23 @@
 const agendaCabecera = document.querySelector('.agenda-cabecera');
 const calendarEl = document.getElementById('calendario');
+let boxSelect = document.getElementById('boxSelect');
+let turnoSelect = document.getElementById('turnoSelect');
 
 const visitasInput = document.getElementById('visitas');
 const visitasValue = visitasInput.value;
 const visitasObj = JSON.parse(visitasValue);
 console.table(visitasObj);
 
+visitasObj.forEach(visita => {
+    console.log('NomBox:', visita.idBox);
+});
+
 const allVisitas = visitasObj.map(visita => {
     const correctDateTime = visita.Hora.replace(/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/, '$1-$2-$3T$4:$5:$6');
     return {
         title: visita.NomPacient,
         start: correctDateTime,
+        idBox: visita.idBox,
     };
 });
 
@@ -31,6 +38,7 @@ function inicializarCalendario() {
             allDaySlot: false,
             slotMinTime: '08:00:00',
             slotMaxTime: '20:30:00',
+            firstDay: 1,
             views: {
                 timeGrid: { slotLabelFormat: { hour: 'numeric', minute: '2-digit', hour12: false } },
                 dayGridMonth: { titleFormat: { month: 'long', year: 'numeric' } },
@@ -150,7 +158,7 @@ function cambiarVistaCalendario(vista) {
 
 function comprobarTamanoPantalla() {
     inicializarCalendario();
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 800) {
         agregarContenidoMovil();
         cambiarVistaCalendario('timeGrid');
     } else {
@@ -172,7 +180,7 @@ function comprobarTamanoPantalla() {
 
 }
 
-document.getElementById('turnoSelect').addEventListener('change', function () {
+turnoSelect.addEventListener('change', function () {
 
     let turno = document.getElementById('turnoSelect').value;
 
@@ -182,13 +190,26 @@ document.getElementById('turnoSelect').addEventListener('change', function () {
     } else if (turno === 'tarda') {
         calendar.setOption('slotMinTime', '14:00:00');
         calendar.setOption('slotMaxTime', '20:30:00');
-    }else if (turno === 'diaEntero') {
+    } else if (turno === 'diaEntero') {
         calendar.setOption('slotMinTime', '8:00:00');
         calendar.setOption('slotMaxTime', '20:30:00');
     }
     calendar.render();
 });
 
+boxSelect.addEventListener('change', function () {
+    const selectedBox = this.value;
+    console.log(selectedBox);
+    console.log(allVisitas);
+    const filteredEvents = allVisitas.filter(visita => String(visita.idBox) == selectedBox);
+
+    console.log(filteredEvents);
+    calendar.removeAllEvents();
+
+    filteredEvents.forEach(event => calendar.addEvent(event));
+
+    calendar.render();
+});
 
 
 window.addEventListener('resize', comprobarTamanoPantalla);
