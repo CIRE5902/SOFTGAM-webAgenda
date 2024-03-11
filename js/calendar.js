@@ -18,6 +18,7 @@ const allVisitas = visitasObj.map(visita => {
         title: visita.NomPacient,
         start: correctDateTime,
         idBox: visita.idBox,
+        telefono: visita.TelefonContacte,
     };
 });
 

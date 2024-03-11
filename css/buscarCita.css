@@ -1,0 +1,92 @@
+.divCitas {
+    margin: 10px;
+}
+
+.divCitas-cita {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+    background-color: aliceblue;
+}
+
+.divCitas-cita-paciente {
+    width: 50%;
+}
+
+.divCitas-cita-fecha {
+    width: 40%;
+}
+
+.divCitas-cita-accion {
+    width: 10%;
+    justify-content: space-evenly;
+    display: flex;
+    margin-right: 20px;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.buscador {
+    max-width: 500px;
+    /* Ajusta según el ancho deseado */
+    margin: 20px auto;
+    /* Centra el buscador y agrega un margen */
+    position: relative;
+    /* Para la posición del icono de búsqueda */
+}
+
+.buscador input[type="text"] {
+    width: 100%;
+    /* Utiliza todo el ancho del contenedor */
+    padding: 10px 40px 10px 20px;
+    /* Espaciado interno: arriba, derecha (para el icono), abajo, izquierda */
+    border: 2px solid #007bff;
+    /* Color del borde */
+    border-radius: 25px;
+    /* Bordes redondeados */
+    font-size: 16px;
+    /* Tamaño del texto */
+    color: #333;
+    /* Color del texto */
+    background-color: #fff;
+    /* Color de fondo */
+    outline: none;
+    /* Elimina el resalte al enfocar */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Sombra suave para profundidad */
+    transition: all 0.3s ease;
+    /* Transición suave al enfocar */
+}
+
+.buscador input[type="text"]:focus {
+    border-color: #0056b3;
+    /* Color del borde al enfocar */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    /* Sombra más pronunciada al enfocar */
+}
+
+.buscador::after {
+    content: "\f002";
+    /* Código Unicode para el ícono de búsqueda de FontAwesome */
+    font-family: 'FontAwesome';
+    /* Asegúrate de tener FontAwesome cargado */
+    position: absolute;
+    /* Posiciona el ícono dentro del contenedor */
+    top: 50%;
+    /* Centra el ícono verticalmente */
+    right: 20px;
+    /* Distancia desde el borde derecho */
+    transform: translateY(-50%);
+    /* Alineación vertical precisa */
+    font-size: 20px;
+    /* Tamaño del ícono */
+    color: #007bff;
+    /* Color del ícono */
+    pointer-events: none;
+    /* Evita que el ícono interfiera con la entrada del texto */
+}

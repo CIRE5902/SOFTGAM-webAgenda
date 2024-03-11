@@ -1,0 +1,9 @@
+            // eventContent: function(arg) {
+            //     let element = document.createElement('div');
+            //     element.innerHTML = `
+            //       <b>${arg.event.title}</b>
+            //       <p>${arg.event.extendedProps.telefono}</p>
+            //     `;
+          
+            //     return { domNodes: [element] };
+            //   },
