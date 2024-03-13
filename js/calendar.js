@@ -13,10 +13,20 @@ visitasObj.forEach(visita => {
 });
 
 const allVisitas = visitasObj.map(visita => {
-    const correctDateTime = visita.Hora.replace(/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/, '$1-$2-$3T$4:$5:$6');
+    const fechaInicio = visita.Fecha.split(' ')[0]; 
+    const horaInicio = visita.Hora.split(' ')[1];
+    const dateTimeInicio = `${fechaInicio}T${horaInicio}`;
+    
+    const duracionEnMinutos = visita.Durada * 15; 
+    const momentoInicio = new Date(dateTimeInicio);
+    const momentoFin = new Date(momentoInicio.getTime() + duracionEnMinutos * 60000); 
+    const fechaFin = `${momentoFin.getFullYear()}-${(momentoFin.getMonth() + 1).toString().padStart(2, '0')}-${momentoFin.getDate().toString().padStart(2, '0')}`;
+    const horaFin = `${momentoFin.getHours().toString().padStart(2, '0')}:${momentoFin.getMinutes().toString().padStart(2, '0')}:${momentoFin.getSeconds().toString().padStart(2, '0')}`;
+    const dateTimeFin = `${fechaFin}T${horaFin}`;
     return {
-        title: visita.NomPacient,
-        start: correctDateTime,
+        title: visita.NomPacient + (visita.TelefonContacte ? ' (' + visita.TelefonContacte + ')' : ''),
+        start: dateTimeInicio,
+        end: dateTimeFin, 
         idBox: visita.idBox,
         telefono: visita.TelefonContacte,
     };
@@ -40,6 +50,7 @@ function inicializarCalendario() {
             slotMinTime: '08:00:00',
             slotMaxTime: '20:30:00',
             firstDay: 1,
+            slotEventOverlap: false,
             views: {
                 timeGrid: { slotLabelFormat: { hour: 'numeric', minute: '2-digit', hour12: false } },
                 dayGridMonth: { titleFormat: { month: 'long', year: 'numeric' } },
