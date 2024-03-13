@@ -13,20 +13,24 @@ visitasObj.forEach(visita => {
 });
 
 const allVisitas = visitasObj.map(visita => {
-    const fechaInicio = visita.Fecha.split(' ')[0]; 
+    const fechaInicio = visita.Fecha.split(' ')[0];
     const horaInicio = visita.Hora.split(' ')[1];
     const dateTimeInicio = `${fechaInicio}T${horaInicio}`;
-    
-    const duracionEnMinutos = visita.Durada * 15; 
+
+    const duracionEnMinutos = visita.Durada * 15;
     const momentoInicio = new Date(dateTimeInicio);
-    const momentoFin = new Date(momentoInicio.getTime() + duracionEnMinutos * 60000); 
+    const momentoFin = new Date(momentoInicio.getTime() + duracionEnMinutos * 60000);
     const fechaFin = `${momentoFin.getFullYear()}-${(momentoFin.getMonth() + 1).toString().padStart(2, '0')}-${momentoFin.getDate().toString().padStart(2, '0')}`;
     const horaFin = `${momentoFin.getHours().toString().padStart(2, '0')}:${momentoFin.getMinutes().toString().padStart(2, '0')}:${momentoFin.getSeconds().toString().padStart(2, '0')}`;
     const dateTimeFin = `${fechaFin}T${horaFin}`;
     return {
         title: visita.NomPacient + (visita.TelefonContacte ? ' (' + visita.TelefonContacte + ')' : ''),
         start: dateTimeInicio,
-        end: dateTimeFin, 
+        end: dateTimeFin,
+        extendedProps: {
+            box: visita.NomBox,
+            urlEvento: 'menuControlador.php',
+        },
         idBox: visita.idBox,
         telefono: visita.TelefonContacte,
     };
@@ -58,6 +62,20 @@ function inicializarCalendario() {
                 timeGridDay: { titleFormat: { day: 'numeric', month: 'long', weekday: 'long' } }
             },
             events: allVisitas,
+            eventDidMount: function (info) {
+                tippy(info.el, {
+                    content: `${info.event.title} - Más info: ${info.event.extendedProps.box}`,
+                    trigger: 'click',
+                    placement: 'top',
+                    allowHTML: true,
+                });
+                info.el.addEventListener('dblclick', function () {
+                    if (info.event.extendedProps.urlEvento) {
+                        window.open(info.event.extendedProps.urlEvento, '_blank');
+                    }
+                });
+            },
+
             dateClick: function (info) {
                 currentDate = info.date;
                 updateCurrentDate(currentDate);

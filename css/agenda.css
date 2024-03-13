@@ -101,3 +101,20 @@ a.fc-col-header-cell-cushion {
         grid-template-columns: 1fr;
     }
 }
+
+.tippy-box {
+    background-color: #f8f9fa; 
+    color: #2c3e50; 
+    border-radius: 6px; 
+    border: 1px solid #bdc3c7;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.tippy-content {
+    font-size: 14px; 
+    line-height: 1.6; 
+}
+
+.tippy-arrow {
+    color: grey; 
+}
