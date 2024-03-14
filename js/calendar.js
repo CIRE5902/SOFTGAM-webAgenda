@@ -188,7 +188,7 @@ function cambiarVistaCalendario(vista) {
 
 function comprobarTamanoPantalla() {
     inicializarCalendario();
-    if (window.innerWidth < 800) {
+    if (window.innerWidth < 858) {
         agregarContenidoMovil();
         cambiarVistaCalendario('timeGrid');
     } else {

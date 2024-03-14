@@ -1,5 +1,5 @@
 .divCitas {
-    margin: 10px;
+    /* margin: 10px; */
 }
 
 .divCitas-cita {
@@ -17,6 +17,10 @@
 
 .divCitas-cita-fecha {
     width: 40%;
+}
+
+.agenda-cabecera-fecha-cambiarVista {
+    margin-right: 10px;
 }
 
 .divCitas-cita-accion {

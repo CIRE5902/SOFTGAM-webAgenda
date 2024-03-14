@@ -10,7 +10,7 @@ if (isset($_POST['username']) && ($_POST['password'])) {
     $password = $_POST['password'];
 
     if ($username == "admin" && $password =="1234") {
-        header('Location: menuControlador.php');
+        header('Location: agendaControlador.php');
     } else {
         echo 'no existe este usuario';
     }
