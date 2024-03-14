@@ -128,10 +128,6 @@ input {
     height: 100%;
 }
 
-
-
-
-
 @media screen and (min-width: 800px) {
     .container {
         display: grid;
