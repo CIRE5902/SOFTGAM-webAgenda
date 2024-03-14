@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Poppins:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css" />
     <link rel="stylesheet" href="../css/agenda.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
     <title>Agenda</title>
 </head>
@@ -13,7 +14,7 @@
 <body>
 
     <?php include 'partials/header.php'; ?>
-    <div class="container">
+    <div id="content" class="container">
         <div class="boxInformacio">
             <!-- <select class="select">
             <option value="doctor1">Doctor 1</option>

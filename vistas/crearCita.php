@@ -13,7 +13,7 @@
 
 <body>
     <?php include 'partials/header.php'; ?>
-    <div class="container">
+    <div id="content" class="container">
         <div class="appointment">
             <div class="appointment-Title">
                 <h1> Crear cita <h1>
