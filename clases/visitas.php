@@ -15,6 +15,7 @@ class visitas
         try {
             $sql = "SELECT
             av.Hora AS Hora,
+            av.Durada AS Durada,
             ab.Data AS Fecha,
             av.NomPacient AS NomPacient,
             av.TelefonContacte AS TelefonContacte,
