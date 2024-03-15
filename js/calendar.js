@@ -78,8 +78,9 @@ function inicializarCalendario() {
 
             dateClick: function (info) {
                 currentDate = info.date;
+                calendar.gotoDate(info.date);
                 updateCurrentDate(currentDate);
-            }
+            }    
         });
         calendarCreado = true;
         calendar.render();
