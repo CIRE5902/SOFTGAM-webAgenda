@@ -4,7 +4,8 @@
         <label for="check" class="checkbtn">
             <i class="fas fa-bars iconoMenu"></i>
         </label>
-        <a class="enlaceLogo" href="../../controladores/menuControlador.php">Nombre de la Clínica</a>
+        <a class="enlaceLogo">Nombre de la Clínica</a>
+        <!-- <a class="enlaceLogo" href="../../controladores/agendaControlador.php">Nombre de la Clínica</a> -->
         <h1 class="logo"></h1>
         <ul class="ulMenu">
         <label for="check" class="checkbtn">
