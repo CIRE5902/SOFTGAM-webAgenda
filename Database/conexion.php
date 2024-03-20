@@ -1,6 +1,6 @@
 <?php
 //Conexion a la BD.
-class Conexion{
+class conexion{
     private $connect;
     public function __construct(){
         $config = require_once __DIR__.'/../config.php';
@@ -9,13 +9,14 @@ class Conexion{
             $this->connect = new PDO($connectionString, $config['usr'], $config['pwd']);
             $this->connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
+            echo "Error al seleccionar: " . $e->getMessage();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
 
     public function getConexion(){
         return $this->connect;
     }
-
     
 }

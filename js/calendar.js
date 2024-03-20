@@ -140,9 +140,9 @@ function agregarContenidoDesktop() {
             <h2 id="currentDateDesktop"></h2>
         </div>
         <div class="agenda-cabecera-fecha-cambiarVista">
-            <button id="vistaMes">Mesos</button>
-            <button id="vistaSemana">Semanes</button>
-            <button id="vistaDia">Dies</button>
+            <button id="vistaMes">Meses</button>
+            <button id="vistaSemana">Semanas</button>
+            <button id="vistaDia">Dias</button>
         </div>
     `;
     agendaCabecera.appendChild(divDesktop);

@@ -3,7 +3,7 @@
 require_once '../Database/conexion.php';
 require_once '../clases/visitas.php';
 
-$conexion = new Conexion();
+$conexion = new conexion();
 $visitas = new visitas($conexion);
 
 $visitas = $visitas->getVisitas();
