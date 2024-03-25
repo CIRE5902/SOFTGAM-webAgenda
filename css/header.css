@@ -9,115 +9,133 @@
     list-style: none;
     box-sizing: border-box;
     /* overflow: hidden; */
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-nav {
-    height: var(--alturaHeader);
-    width: 100%;
-    background-color: #255980;
-}
-
-.enlaceLogo {
+.header {
     position: absolute;
-    padding: 30px 10px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff;
+    width: 100%;
+    min-height: var(--alturaHeader);
+    background-color: #255980;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.ulMenu {
-    float: right;
-    margin-right: 20px;
-}
-
-.ulMenu li {
-    display: inline-block;
-    line-height: var(--alturaHeader);
-}
-
-.ulMenu li a {
-    color: #fff;
-    font-size: 18px;
-    padding: 7px 13px;
-    border-radius: 3px;
-    text-transform: uppercase;
-}
-
-.iconoMenu{
+.header-logo {
     color: white;
-    margin-top: 20px;
-    padding: 7px 13px;
-    font-size: xx-large;
+    font-size: 1.75em;
+    font-weight: 600;
+    text-decoration: none;
 }
 
-.ulMenu li a.active,
-.ulMenu li a:hover {
-    background-color: steelblue;
-    transition: .5s;
+.header-nav-ul {
+    position: relative;
 }
 
-.checkbtn {
-    font-size: 30px;
-    color: #fff;
-    float: right;
-    line-height: var(--alturaHeader);
-    /* margin-right: 10px; */
-    cursor: pointer;
-    display: none
+.header-nav-ul li {
+    position: relative;
+    list-style: none;
+    float: left;
 }
 
-#check {
+.header-nav-ul li a {
+    color: white;
+    font-size: 1.1em;
+    padding: 20px 25px;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-nav-ul li a:hover {
+    color: steelblue;
+}
+
+.header-nav-ul li ul {
+    position: absolute;
+    left: 0;
+    width: 200px;
+    background-color: #255980;
     display: none;
+    z-index: 3;
 }
 
-#content {
-    height: calc(100vh - var(--alturaHeader));
-    margin-top: 10px;
+.header-nav-ul li:hover ul {
+    display: block;
 }
 
-@media (max-width: 858px) {
-    .checkbtn {
-        display: block;
+.header-nav-ul li ul li {
+    position: relative;
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .header {
+        padding: 10px 20px;
     }
 
-    .ulMenu {
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        background-color: #255980;
-        left: -100%;
-        text-align: center;
-        transition: all .5s;
-        z-index: 2;
-    }
-
-    .iconoFlecha {
-        margin-top: 20px;
-        color: white;
-        display: flex;
-        left: 0;
-        margin-left: 20px;
+    .header-nav {
         position: absolute;
-    }
-
-    .ulMenu li {
-        display: block;
-        margin: 50px 0;
-        line-height: 30px;
-    }
-
-    .ulMenu li a {
-        font-size: 20px;
-    }
-
-    .ulMenu li a.hover,
-    .ulMenu li a.active {
-        background: none;
-        color: steelblue;
-    }
-
-    #check:checked~ul {
+        width: 100%;
+        top: var(--alturaHeader);
         left: 0;
+        background-color: #255980;
+        height: calc(var(--alturaHeader) + 100vh);
+        z-index: 3;
+        display: none;
+    }
+
+    .header.active nav {
+        display: initial;
+    }
+
+    .header-nav-ul li {
+        width: 100%;
+    }
+
+    .header-nav-ul li ul {
+        position: relative;
+        width: 100%;
+        left: 0;
+    }
+
+    .header-menuToggle{
+        position: relative;
+        width: 40px;
+        height: 50px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header-menuToggle::before{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        transform: translateY(-12px);
+        box-shadow: 0 12px white;
+    }
+
+    .header-menuToggle::after{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background: white;
+        transform: translateY(12px);
+    }
+
+    header.active .header-menuToggle::before{
+        transform: rotate(45deg);
+        box-shadow: 0 0 white;
+    }
+
+    header.active .header-menuToggle::after{
+        transform: rotate(315deg);
     }
 }

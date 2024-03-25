@@ -1,22 +1,22 @@
 <header class="header">
-    <nav>
-        <input type="checkbox" id="check">
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars iconoMenu"></i>
-        </label>
-        <a class="enlaceLogo">Nombre de la Clínica</a>
-        <!-- <a class="enlaceLogo" href="../../controladores/agendaControlador.php">Nombre de la Clínica</a> -->
-        <h1 class="logo"></h1>
-        <ul class="ulMenu">
-        <label for="check" class="checkbtn">
-        <i class="fa-solid fa-arrow-left iconoFlecha"></i>
-        </label>
-            <li><a class="<?php echo basename($_SERVER['PHP_SELF']) == 'agendaControlador.php' ? 'active' : ''; ?>" href="agendaControlador.php">Agenda</a></li>
-            <li><a class="<?php echo basename($_SERVER['PHP_SELF']) == 'crearCitaControlador.php' ? 'active' : ''; ?>" href="crearCitaControlador.php">Crear cita</a></li>
-            <li><a class="<?php echo basename($_SERVER['PHP_SELF']) == 'buscarCitaControlador.php' ? 'active' : ''; ?>" href="buscarCitaControlador.php">Buscar cita</a></li>
+    <a href="#" class="header-logo"> Nombre de la clinica </a>
+    <div class="header-menuToggle"></div>
+    <nav class="header-nav">
+        <ul class="header-nav-ul">
+        <li><a href="#"> CLINICA <b><span style="color: white;">&#x25BC;</span>
+</b></a>
+        <ul>
+        <li><a href="#"> CLINICA 1</a></li>
+        <li><a href="#"> CLINICA 2</a></li>
+        <li><a href="#"> CLINICA 3</a></li>
+        <li><a href="#"> CLINICA 4</a></li>
+        </ul>
+    </li>
+            <li><a href="#"> AGENDA</a></li>
+            <li><a href="#"> CREAR CITA</a></li>
+            <li><a href="#"> BUSCAR CITA</a></li>
         </ul>
     </nav>
+    <script src="./../../js/menuDesplegable.js"></script>
     <link rel="stylesheet" href="../css/header.css">
-    <script src="../../js/menuDesplegable.js"></script>
-
 </header>

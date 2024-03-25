@@ -1,10 +1,6 @@
-var checkbox = document.querySelector('#check');
-var body = document.querySelector('body');
+let menuToggle = document.querySelector('.header-menuToggle');
+let header = document.querySelector('.header');
 
-checkbox.addEventListener('change', function() {
-    if (checkbox.checked) {
-        body.style.overflow = 'hidden';
-    } else {
-        body.style.overflow = 'visible';
-    }
-});
+menuToggle.addEventListener('click', function() {
+header.classList.toggle('active');
+})
