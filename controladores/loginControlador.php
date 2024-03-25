@@ -2,17 +2,17 @@
 
 require_once '../Database/conexion.php';
 
-// $conexion = new Conexion();
-// $consulta = new Consultas($conexion);
-
-if (isset($_POST['username']) && ($_POST['password'])) {
+if (isset($_POST['username'], $_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    if ($username == "admin" && $password =="1234") {
+    if ($username === "admin" && $password === "1234") {
+        session_start();
+        $_SESSION['logged_in'] = true;
         header('Location: agendaControlador.php');
+        exit;
     } else {
-        echo 'no existe este usuario';
+        $error_message = 'Usuario o contraseña incorrectos';
     }
 }
 

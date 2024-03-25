@@ -2,15 +2,10 @@ const agendaCabecera = document.querySelector('.agenda-cabecera');
 const calendarEl = document.getElementById('calendario');
 let boxSelect = document.getElementById('boxSelect');
 let turnoSelect = document.getElementById('turnoSelect');
+let formAgenda = document.getElementById('formAgenda');
 
-const visitasInput = document.getElementById('visitas');
-const visitasValue = visitasInput.value;
-const visitasObj = JSON.parse(visitasValue);
+const visitasObj = visitas;
 console.table(visitasObj);
-
-visitasObj.forEach(visita => {
-    console.log('NomBox:', visita.idBox);
-});
 
 const allVisitas = visitasObj.map(visita => {
     const fechaInicio = visita.Fecha.split(' ')[0];
@@ -208,12 +203,12 @@ function comprobarTamanoPantalla() {
         updateCurrentDate(currentDate);
 
     }
-
 }
 
 turnoSelect.addEventListener('change', function () {
 
     let turno = document.getElementById('turnoSelect').value;
+    formAgenda.submit();
 
     if (turno === 'mati') {
         calendar.setOption('slotMinTime', '08:00:00');
@@ -225,21 +220,24 @@ turnoSelect.addEventListener('change', function () {
         calendar.setOption('slotMinTime', '8:00:00');
         calendar.setOption('slotMaxTime', '20:30:00');
     }
-    calendar.render();
+    // calendar.render();
 });
 
 boxSelect.addEventListener('change', function () {
     const selectedBox = this.value;
-    console.log(selectedBox);
-    console.log(allVisitas);
-    const filteredEvents = allVisitas.filter(visita => String(visita.idBox) == selectedBox);
 
-    console.log(filteredEvents);
-    calendar.removeAllEvents();
+    formAgenda.submit();
 
-    filteredEvents.forEach(event => calendar.addEvent(event));
+    // console.log(selectedBox);
+    // console.log(allVisitas);
+    // const filteredEvents = allVisitas.filter(visita => String(visita.idBox) == selectedBox);
 
-    calendar.render();
+    // console.log(filteredEvents);
+    // calendar.removeAllEvents();
+
+    // filteredEvents.forEach(event => calendar.addEvent(event));
+
+    // calendar.render();
 });
 
 

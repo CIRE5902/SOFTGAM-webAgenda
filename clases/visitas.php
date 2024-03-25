@@ -10,8 +10,9 @@ class visitas
         $this->conexion = $this->conexion->getConexion();
     }
 
-    public function getVisitas()
+    public function getVisitas($boxSelect, $turnoSelect, $dia)
     {
+
         try {
             $sql = "SELECT
             av.Hora AS Hora,
@@ -23,16 +24,31 @@ class visitas
             b.Box AS idBox
             FROM
             tbAgendaVisita av
-            JOIN
+            INNER JOIN
             tbAgendaBox ab ON av.IdBoxVisita = ab.IdBoxVisita
-            JOIN
-            tbBox b ON ab.Box = b.Box;
+            INNER JOIN
+            tbBox b ON ab.Box = b.Box
+            WHERE TRUE
             ";
+            if ($boxSelect) {
+                $sql .= "\nAND b.Box = '$boxSelect'";
+            }
+
+            if ($turnoSelect) {
+                if ($turnoSelect == 'diaEntero') {
+                } elseif ($turnoSelect == 'mati') {
+                    $sql .= " AND HOUR(av.Hora) >= 8 AND HOUR(av.Hora) < 14";
+                } elseif ($turnoSelect == 'tarda') {
+                    $sql .= " AND HOUR(av.Hora) >= 14 AND HOUR(av.Hora) < 20";
+                }
+            }
+            // if ($dia) {
+            //     $sql .= "\nAND DATE(ab.Data) = '$dia'";
+            // }
             $stmt = $this->conexion->prepare($sql);
             $stmt->execute();
 
             $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
             return $resultados;
         } catch (PDOException $e) {
             echo "Error al seleccionar: " . $e->getMessage();
