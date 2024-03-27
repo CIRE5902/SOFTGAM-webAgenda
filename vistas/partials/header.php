@@ -8,7 +8,7 @@
 
     <nav class="header-nav">
         <ul class="header-nav-ul">
-            <li><a href="#"> CENTRE <b><span style="color: white;">&#x25BC;</span>
+            <li><a href="#"> <b><span style="color: white;">&#x25BC;</span></b> CENTRE 
                     </b></a>
                 <ul>
                     <?php foreach ($clinicas as $clinica) : ?>
