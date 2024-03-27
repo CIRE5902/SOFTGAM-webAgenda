@@ -42,9 +42,13 @@ class visitas
                     $sql .= " AND HOUR(av.Hora) >= 14 AND HOUR(av.Hora) < 20";
                 }
             }
-            // if ($dia) {
-            //     $sql .= "\nAND DATE(ab.Data) = '$dia'";
-            // }
+
+            if ($dia) {
+                $sql .= "\nAND DATE(ab.Data) = '$dia'";
+            }
+            // var_dump($dia);
+            // die();
+            
             $stmt = $this->conexion->prepare($sql);
             $stmt->execute();
 

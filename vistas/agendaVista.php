@@ -38,6 +38,9 @@
                     <option value="mati" <?php echo ($turnoSelect == 'mati') ? 'selected' : ''; ?>>Mañana</option>
                     <option value="tarda" <?php echo ($turnoSelect == 'tarda') ? 'selected' : ''; ?>>Tarde</option>
                 </select>
+
+                <input type="hidden" id="diaSeleccionado" name="dia" value="<?php echo htmlspecialchars(isset($diaParaVista) ? $diaParaVista : date('Y-m-d')); ?>">
+
             </form>
         </div>
 

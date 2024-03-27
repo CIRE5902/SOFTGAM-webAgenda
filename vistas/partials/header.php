@@ -1,20 +1,27 @@
 <header class="header">
-    <a href="#" class="header-logo"> Nombre de la clinica </a>
-    <div class="header-menuToggle"></div>
+    <a href="#" class="header-logo"> DUIKER SANITARIA </a>
+
+    <input type="checkbox" id="menuBar">
+    <label for="menuBar">
+        <i class="fas fa-bars iconoMenu"></i>
+    </label>
+
     <nav class="header-nav">
         <ul class="header-nav-ul">
-        <li><a href="#"> CLINICA <b><span style="color: white;">&#x25BC;</span>
-</b></a>
-        <ul>
-        <li><a href="#"> CLINICA 1</a></li>
-        <li><a href="#"> CLINICA 2</a></li>
-        <li><a href="#"> CLINICA 3</a></li>
-        <li><a href="#"> CLINICA 4</a></li>
-        </ul>
-    </li>
-            <li><a href="#"> AGENDA</a></li>
-            <li><a href="#"> CREAR CITA</a></li>
-            <li><a href="#"> BUSCAR CITA</a></li>
+            <li><a href="#"> CENTRE <b><span style="color: white;">&#x25BC;</span>
+                    </b></a>
+                <ul>
+                    <?php foreach ($clinicas as $clinica) : ?>
+                        <li>
+                            <a href="#"> - <?php echo htmlspecialchars($clinica['Nom']); ?></a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </li>
+            <li><a class="<?php echo basename($_SERVER['PHP_SELF']) == 'agendaControlador.php' ? 'active' : ''; ?>" href="agendaControlador.php">AGENDA</a></li>
+            <li><a class="<?php echo basename($_SERVER['PHP_SELF']) == 'crearCitaControlador.php' ? 'active' : ''; ?>" href="crearCitaControlador.php">CREAR CITA</a></li>
+            <li><a class="<?php echo basename($_SERVER['PHP_SELF']) == 'buscarCitaControlador.php' ? 'active' : ''; ?>" href="buscarCitaControlador.php">BUSCAR CITA</a></li>
+
         </ul>
     </nav>
     <script src="./../../js/menuDesplegable.js"></script>
