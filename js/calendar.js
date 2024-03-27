@@ -207,38 +207,19 @@ function comprobarTamanoPantalla() {
 
 turnoSelect.addEventListener('change', function () {
 
-    let turno = document.getElementById('turnoSelect').value;
     formAgenda.submit();
-
-    if (turno === 'mati') {
-        calendar.setOption('slotMinTime', '08:00:00');
-        calendar.setOption('slotMaxTime', '13:30:00');
-    } else if (turno === 'tarda') {
-        calendar.setOption('slotMinTime', '14:00:00');
-        calendar.setOption('slotMaxTime', '20:30:00');
-    } else if (turno === 'diaEntero') {
-        calendar.setOption('slotMinTime', '8:00:00');
-        calendar.setOption('slotMaxTime', '20:30:00');
-    }
-    // calendar.render();
 });
 
 boxSelect.addEventListener('change', function () {
-    const selectedBox = this.value;
 
     formAgenda.submit();
-
-    // console.log(selectedBox);
-    // console.log(allVisitas);
-    // const filteredEvents = allVisitas.filter(visita => String(visita.idBox) == selectedBox);
-
-    // console.log(filteredEvents);
-    // calendar.removeAllEvents();
-
-    // filteredEvents.forEach(event => calendar.addEvent(event));
-
-    // calendar.render();
 });
+
+document.getElementById('diaSeleccionado').addEventListener('change', function() {
+    formAgenda.submit();
+});
+
+
 
 
 window.addEventListener('resize', comprobarTamanoPantalla);

@@ -24,6 +24,5 @@
 
         </ul>
     </nav>
-    <script src="./../../js/menuDesplegable.js"></script>
     <link rel="stylesheet" href="../css/header.css">
 </header>
