@@ -13,8 +13,24 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 $boxSelect = $_GET['boxSelect'] ?? null;
 $turnoSelect = $_GET['turnoSelect'] ?? null;
-$dia = $_GET['dia'] ?? Date('Y-m-d');
+$fecha = $_GET['fecha'] ?? Date('Y-m-d');
 
+$slotMinTime = '08:00:00';
+$slotMaxTime = '20:00:00';
+
+if ($turnoSelect == 'mati') {
+    $slotMinTime = '08:00:00';
+    $slotMaxTime = '14:30:00';
+} elseif ($turnoSelect == 'tarda') {
+    $slotMinTime = '14:00:00';
+    $slotMaxTime = '20:30:00';
+} else{
+    $slotMinTime = '08:00:00';
+    $slotMaxTime = '20:30:00';
+}
+
+// var_dump($fecha);
+// die();
 $conexion = new conexion();
 $box = new box($conexion);
 $visitas = new visitas($conexion);
@@ -22,9 +38,8 @@ $clinicas = new clinicas($conexion);
 
 $select = $box->getBox();
 
-$visitas = $visitas->getVisitas($boxSelect, $turnoSelect, $dia);
+$visitas = $visitas->getVisitas($boxSelect, $turnoSelect);
 
 $clinicas = $clinicas->getClinicas();
-
 
 include __DIR__ . '/../vistas/agendaVista.php';

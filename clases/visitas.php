@@ -10,7 +10,7 @@ class visitas
         $this->conexion = $this->conexion->getConexion();
     }
 
-    public function getVisitas($boxSelect, $turnoSelect, $dia)
+    public function getVisitas($boxSelect, $turnoSelect)
     {
 
         try {
@@ -21,6 +21,7 @@ class visitas
             av.NomPacient AS NomPacient,
             av.TelefonContacte AS TelefonContacte,
             b.NomBox AS NomBox,
+            b.Color AS ColorBox,
             b.Box AS idBox
             FROM
             tbAgendaVisita av
@@ -43,9 +44,9 @@ class visitas
                 }
             }
 
-            if ($dia) {
-                $sql .= "\nAND DATE(ab.Data) = '$dia'";
-            }
+            // if ($dia) {
+            //     $sql .= "\nAND DATE(ab.Data) = '$dia'";
+            // }
             // var_dump($dia);
             // die();
             

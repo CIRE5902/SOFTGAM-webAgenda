@@ -2,6 +2,9 @@ const agendaCabecera = document.querySelector('.agenda-cabecera');
 const calendarEl = document.getElementById('calendario');
 let boxSelect = document.getElementById('boxSelect');
 let turnoSelect = document.getElementById('turnoSelect');
+var slotMinTime = document.getElementById('slotMinTime').value;
+var slotMaxTime = document.getElementById('slotMaxTime').value;
+let fechaInput = document.getElementById('fechaInput').value;
 let formAgenda = document.getElementById('formAgenda');
 
 const visitasObj = visitas;
@@ -22,6 +25,8 @@ const allVisitas = visitasObj.map(visita => {
         title: visita.NomPacient + (visita.TelefonContacte ? ' (' + visita.TelefonContacte + ')' : ''),
         start: dateTimeInicio,
         end: dateTimeFin,
+        color: decimalToHexColor(visita.ColorBox),
+        textColor: "black",
         extendedProps: {
             box: visita.NomBox,
             urlEvento: 'menuControlador.php',
@@ -31,23 +36,41 @@ const allVisitas = visitasObj.map(visita => {
     };
 });
 
+console.log(allVisitas);
+
 let calendarCreado = false;
 let calendar;
-let currentDate = new Date();
+let currentDate = fechaInput ? new Date(fechaInput) : new Date();
+let mesActual = currentDate.getMonth() + 1;
+let añoActual = currentDate.getFullYear();
 
+console.log(fechaInput);
 function inicializarCalendario() {
     if (!calendarCreado && calendarEl) {
         calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'timeGrid',
             initialDate: currentDate,
+            datesSet: function (dateInfo) {
+                let nuevaFecha = new Date(dateInfo.start);
+                let nuevoAño = nuevaFecha.getFullYear();
+                let nuevoMes = nuevaFecha.getMonth() + 1;
+                if (nuevoMes !== mesActual || nuevoAño !== añoActual) {
+                    mesActual = nuevoMes;
+                    añoActual = nuevoAño;
+                    let fechaFormateada = `${nuevoAño}-${nuevoMes.toString().padStart(2, '0')}-${nuevaFecha.getDate().toString().padStart(2, '0')}`;
+                    document.getElementById('fechaInput').value = fechaFormateada;
+                    formAgenda.submit();
+                }
+            },
             headerToolbar: false,
+            editable: true,
             selectable: true,
             locale: 'es',
             slotDuration: '00:30:00',
             slotLabelInterval: '00:30:00',
             allDaySlot: false,
-            slotMinTime: '08:00:00',
-            slotMaxTime: '20:30:00',
+            slotMinTime: slotMinTime,
+            slotMaxTime: slotMaxTime,
             firstDay: 1,
             slotEventOverlap: false,
             views: {
@@ -75,12 +98,18 @@ function inicializarCalendario() {
                 currentDate = info.date;
                 calendar.gotoDate(info.date);
                 updateCurrentDate(currentDate);
-            }    
+            }
         });
         calendarCreado = true;
         calendar.render();
         updateCurrentDate(currentDate);
     }
+}
+
+function decimalToHexColor(decimalColor) {
+    let hexColor = decimalColor.toString(16);
+    hexColor = hexColor.padStart(6, '0');
+    return '#' + hexColor;
 }
 
 function limpiarContenido() {
@@ -215,12 +244,7 @@ boxSelect.addEventListener('change', function () {
     formAgenda.submit();
 });
 
-document.getElementById('diaSeleccionado').addEventListener('change', function() {
-    formAgenda.submit();
-});
-
-
-
+console.log(currentDate);
 
 window.addEventListener('resize', comprobarTamanoPantalla);
 comprobarTamanoPantalla();

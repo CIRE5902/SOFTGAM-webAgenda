@@ -39,8 +39,9 @@
                     <option value="tarda" <?php echo ($turnoSelect == 'tarda') ? 'selected' : ''; ?>>Tarde</option>
                 </select>
 
-                <input type="hidden" id="diaSeleccionado" name="dia" value="<?php echo htmlspecialchars(isset($diaParaVista) ? $diaParaVista : date('Y-m-d')); ?>">
-
+                <input type="hidden" id="fechaInput" name="fecha" value="<?php echo htmlspecialchars($fecha); ?>">
+                <input type="hidden" id="slotMinTime" value="<?php echo $slotMinTime; ?>">
+                <input type="hidden" id="slotMaxTime" value="<?php echo $slotMaxTime; ?>">
             </form>
         </div>
 
