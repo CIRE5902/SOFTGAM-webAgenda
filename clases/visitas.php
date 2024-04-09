@@ -10,9 +10,11 @@ class visitas
         $this->conexion = $this->conexion->getConexion();
     }
 
-    public function getVisitas($boxSelect, $turnoSelect)
+    public function getVisitas($boxSelect, $turnoSelect, $fecha)
     {
-
+        $fecha_dt = new DateTimeImmutable($fecha);
+        $inicioMes = $fecha_dt->format('Y-m-01'); 
+        $finMes = $fecha_dt->format('Y-m-t'); 
         try {
             $sql = "SELECT
             av.Hora AS Hora,
@@ -44,12 +46,11 @@ class visitas
                 }
             }
 
-            // if ($dia) {
-            //     $sql .= "\nAND DATE(ab.Data) = '$dia'";
-            // }
-            // var_dump($dia);
-            // die();
-            
+            if ($fecha) {
+                $sql .= "\nAND DATE(ab.Data) BETWEEN '$inicioMes' AND '$finMes'";
+
+            }
+
             $stmt = $this->conexion->prepare($sql);
             $stmt->execute();
 

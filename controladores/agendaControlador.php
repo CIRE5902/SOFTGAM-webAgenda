@@ -13,7 +13,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 $boxSelect = $_GET['boxSelect'] ?? null;
 $turnoSelect = $_GET['turnoSelect'] ?? null;
+
 $fecha = $_GET['fecha'] ?? Date('Y-m-d');
+
 
 $slotMinTime = '08:00:00';
 $slotMaxTime = '20:00:00';
@@ -24,21 +26,23 @@ if ($turnoSelect == 'mati') {
 } elseif ($turnoSelect == 'tarda') {
     $slotMinTime = '14:00:00';
     $slotMaxTime = '20:30:00';
-} else{
+} else {
     $slotMinTime = '08:00:00';
     $slotMaxTime = '20:30:00';
 }
 
-// var_dump($fecha);
-// die();
+
+
 $conexion = new conexion();
 $box = new box($conexion);
 $visitas = new visitas($conexion);
 $clinicas = new clinicas($conexion);
 
+
+
 $select = $box->getBox();
 
-$visitas = $visitas->getVisitas($boxSelect, $turnoSelect);
+$visitas = $visitas->getVisitas($boxSelect, $turnoSelect, $fecha);
 
 $clinicas = $clinicas->getClinicas();
 
