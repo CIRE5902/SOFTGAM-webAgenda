@@ -37,8 +37,6 @@ const allVisitas = visitasObj.map(visita => {
     };
 });
 
-console.log(allVisitas);
-
 let calendarCreado = false;
 let calendar;
 let currentDate = fechaInput ? new Date(fechaInput) : new Date();
@@ -49,24 +47,23 @@ updateCurrentDate();
 let mesActual = currentDate.getMonth() + 1;
 let añoActual = currentDate.getFullYear();
 
-console.log(fechaInput);
 function inicializarCalendario() {
     if (!calendarCreado && calendarEl) {
         calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'timeGrid',
             initialDate: new Date(fechaInput),
-            // datesSet: function (dateInfo) {
-            //     let nuevoMes = dateInfo.start.getMonth() + 1;
-            //     let nuevoAño = dateInfo.start.getFullYear();
+            datesSet: function (dateInfo) {
+                console.log(dateInfo);
+                setTimeout(function(){
+                    let nuevoMes = dateInfo.start.getMonth() + 1;
+                    let nuevoAño = dateInfo.start.getFullYear();
 
-
-            //     if (nuevoMes !== mesActual || nuevoAño !== añoActual) {
-            //         mesActual = nuevoMes;
-            //         añoActual = nuevoAño;
-            //         document.getElementById('fechaInput').value = currentDateFormatted;
-            //         formAgenda.submit();
-            //     }
-            // },
+                    if (nuevoMes !== mesActual || nuevoAño !== añoActual) {
+                        document.getElementById('fechaInput').setAttribute('value', currentDateFormatted);
+                        formAgenda.submit();
+                    }
+                }, 0);
+            },
             headerToolbar: false,
             editable: true,
             selectable: true,
@@ -202,7 +199,8 @@ function configurarEventosDeNavegacion() {
 
     document.querySelectorAll('#dateInput, #dateInputDesktop').forEach(input => {
         input.onchange = (event) => {
-            currentDateFormatted = new Date(event.target.value).toISOString().split('T')[0];
+            currentDate = new Date(event.target.value);
+            currentDateFormatted = currentDate.toISOString().split('T')[0];
             calendar.gotoDate(currentDate);
             updateCurrentDate();
         };
@@ -293,8 +291,6 @@ turnoSelect.addEventListener('change', function () {
 boxSelect.addEventListener('change', function () {
     formAgenda.submit();
 });
-
-console.log(currentDate);
 
 window.addEventListener('resize', comprobarTamanoPantalla);
 comprobarTamanoPantalla();
