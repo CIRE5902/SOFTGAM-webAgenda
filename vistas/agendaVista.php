@@ -44,9 +44,10 @@
                 <input type="hidden" id="slotMaxTime" value="<?php echo $slotMaxTime; ?>">
             </form>
         </div>
-
         <div class="agenda">
             <div class="agenda-cabecera">
+            </div>
+            <div class="agenda-doctors">
             </div>
             <div id='calendario' class="agenda-calendario"></div>
 

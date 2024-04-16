@@ -1,4 +1,5 @@
 const agendaCabecera = document.querySelector('.agenda-cabecera');
+const doctors = document.querySelector('.agenda-doctors');
 const calendarEl = document.getElementById('calendario');
 let boxSelect = document.getElementById('boxSelect');
 let turnoSelect = document.getElementById('turnoSelect');
@@ -57,7 +58,7 @@ function inicializarCalendario() {
             // datesSet: function (dateInfo) {
             //     let nuevoMes = dateInfo.start.getMonth() + 1;
             //     let nuevoAño = dateInfo.start.getFullYear();
-                
+
 
             //     if (nuevoMes !== mesActual || nuevoAño !== añoActual) {
             //         mesActual = nuevoMes;
@@ -213,6 +214,7 @@ function updateCurrentDate() {
         element.textContent = currentDateFormatted;
     });
     document.getElementById('fechaInput').value = currentDateFormatted;
+    updateDoctor(currentDateFormatted);
 }
 
 function cambiarVistaCalendario(vista) {
@@ -240,6 +242,49 @@ function comprobarTamanoPantalla() {
 
     }
 }
+
+function updateDoctor(date) {
+    const visitasDelDia = visitasObj.filter(visita => visita.Fecha.startsWith(date));
+
+    doctors.innerHTML = '';
+
+    const visitasMati = visitasDelDia.filter(visita => visita.Torn === 'M');
+    if (visitasMati.length > 0) {
+        const doctorsMatiDiv = document.createElement("div");
+        doctorsMatiDiv.className = "doctors-doctorsMati";
+        const visitaMati = visitasMati[0]; 
+        doctorsMatiDiv.innerHTML = `
+        <div class="doctors-doctorsMati-torn">
+        <i class="fa-solid fa-sun solAgenda"> Mati </i>
+    </div>
+    <div class="doctors-doctorsMati-doctors">
+        <div class="doctors-doctorsMati-doctors-1">${visitaMati.Doctor1}</div>
+        <div class="doctors-doctorsMati-doctors-2">${visitaMati.Doctor2}</div>
+    </div>
+        `;
+        doctors.appendChild(doctorsMatiDiv);
+    }
+
+    const visitasTarda = visitasDelDia.filter(visita => visita.Torn === 'T');
+    if (visitasTarda.length > 0) {
+        const doctorsTardaDiv = document.createElement("div");
+        doctorsTardaDiv.className = "doctors-doctorsTarda";
+        const visitaTarda = visitasTarda[0]; 
+        doctorsTardaDiv.innerHTML = `
+        <div class="doctors-doctorsTarda-torn">
+        <i class="fa-solid fa-moon lunaAgenda"> Tarda </i>
+    </div>
+    <div class="doctors-doctorsTarda-doctors">
+        <div class="doctors-doctorsTarda-doctors-1">${visitaTarda.Doctor1}</div>
+        <div class="doctors-doctorsTarda-doctors-2">${visitaTarda.Doctor2}</div>
+    </div>
+        `;
+        doctors.appendChild(doctorsTardaDiv);
+    }
+}
+
+
+
 
 turnoSelect.addEventListener('change', function () {
     formAgenda.submit();

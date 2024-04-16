@@ -21,6 +21,52 @@ button {
     margin-right: 15px;
 }
 
+.agenda-doctors {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.doctors-doctorsMati {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.doctors-doctorsMati-doctors {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.solAgenda{
+    color:#FFA500;
+    font-size: medium;
+}
+
+.doctors-doctorsTarda {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.doctors-doctorsTarda-doctors {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.lunaAgenda{
+    color:#0F4C81;
+    font-size: medium;
+}
 
 .fas {
     font-size: xx-large;
@@ -104,18 +150,18 @@ a.fc-col-header-cell-cushion {
 }
 
 .tippy-box {
-    background-color: #f8f9fa; 
-    color: #2c3e50; 
-    border-radius: 6px; 
+    background-color: #f8f9fa;
+    color: #2c3e50;
+    border-radius: 6px;
     border: 1px solid #bdc3c7;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .tippy-content {
-    font-size: 14px; 
-    line-height: 1.6; 
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 .tippy-arrow {
-    color: grey; 
+    color: grey;
 }
