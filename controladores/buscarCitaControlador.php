@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once '../Database/conexion.php';
 require_once '../clases/visitas.php';

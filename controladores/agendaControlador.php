@@ -1,11 +1,18 @@
 <?php
+session_start();
 
 require_once '../Database/conexion.php';
 require_once '../clases/box.php';
 require_once '../clases/visitas.php';
 require_once '../clases/clinicas.php';
 
-session_start();
+if (isset($_GET['clinica_id'])) {
+    $_SESSION['clinica_id'] = $_GET['clinica_id'];
+}
+if (isset($_GET['clinica_nom'])) {
+    $_SESSION['clinica_nom'] = $_GET['clinica_nom'];
+}
+
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header('Location: loginControlador.php');
     exit;
@@ -42,8 +49,9 @@ $clinicas = new clinicas($conexion);
 
 $select = $box->getBox();
 
-$visitas = $visitas->getVisitas($boxSelect, $turnoSelect, $fecha);
+$visitas = $visitas->getVisitas($boxSelect, $turnoSelect, $fecha, $_SESSION['clinica_id']);
 
 $clinicas = $clinicas->getClinicas();
+
 
 include __DIR__ . '/../vistas/agendaVista.php';

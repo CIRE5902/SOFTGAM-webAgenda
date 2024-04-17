@@ -281,9 +281,6 @@ function updateDoctor(date) {
     }
 }
 
-
-
-
 turnoSelect.addEventListener('change', function () {
     formAgenda.submit();
 });

@@ -143,6 +143,10 @@ a.fc-col-header-cell-cushion {
     font-size: x-large;
 }
 
+.fc{
+    background-color: lightgrey; 
+}
+
 @media screen and (max-width: 768px) {
     .boxInformacio {
         grid-template-columns: 1fr;

@@ -10,11 +10,11 @@ class visitas
         $this->conexion = $this->conexion->getConexion();
     }
 
-    public function getVisitas($boxSelect, $turnoSelect, $fecha)
+    public function getVisitas($boxSelect, $turnoSelect, $fecha, $clinica_id)
     {
         $fecha_dt = new DateTimeImmutable($fecha);
-        $inicioMes = $fecha_dt->format('Y-m-01'); 
-        $finMes = $fecha_dt->format('Y-m-t'); 
+        $inicioMes = $fecha_dt->format('Y-m-01');
+        $finMes = $fecha_dt->format('Y-m-t');
         try {
             $sql = "SELECT
             av.Hora AS Hora,
@@ -36,6 +36,11 @@ class visitas
             tbBox b ON ab.Box = b.Box
             WHERE TRUE
             ";
+
+            if ($clinica_id) {
+                $sql .= "\nAND ab.CLINICA_ID = '$clinica_id'";
+            }
+
             if ($boxSelect) {
                 $sql .= "\nAND b.Box = '$boxSelect'";
             }
@@ -51,7 +56,6 @@ class visitas
 
             if ($fecha) {
                 $sql .= "\nAND DATE(ab.Data) BETWEEN '$inicioMes' AND '$finMes'";
-
             }
 
             $stmt = $this->conexion->prepare($sql);

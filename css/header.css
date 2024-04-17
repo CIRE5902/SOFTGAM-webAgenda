@@ -25,9 +25,13 @@
 
 .header-logo {
     color: white;
-    font-size: 1.75em;
-    font-weight: 600;
+    font-size: 2em;
     text-decoration: none;
+    font-weight: bold;
+}
+.header-clinica{
+    color: white;
+    font-size: 1em;
     font-weight: bold;
 }
 

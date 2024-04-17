@@ -13,7 +13,7 @@ class clinicas
     public function getClinicas()
     {
         try {
-            $sql = "SELECT Nom FROM tbclinicas";
+            $sql = "SELECT Id, Nom FROM tbclinicas";
             $stmt = $this->conexion->prepare($sql);
             $stmt->execute();
 
