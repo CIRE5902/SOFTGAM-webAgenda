@@ -42,6 +42,8 @@
                 <input type="hidden" id="fechaInput" name="fecha" value="<?php echo htmlspecialchars($fecha); ?>">
                 <input type="hidden" id="slotMinTime" value="<?php echo $slotMinTime; ?>">
                 <input type="hidden" id="slotMaxTime" value="<?php echo $slotMaxTime; ?>">
+                <!-- <input type="hidden" id="tipoVista" name="tipoVista" value="<?php echo $tipoVista; ?>"> -->
+
             </form>
         </div>
         <div class="agenda">

@@ -20,9 +20,12 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 $boxSelect = $_GET['boxSelect'] ?? null;
 $turnoSelect = $_GET['turnoSelect'] ?? null;
-
+$clinica_id = $_GET['clinica_id'] ?? null;
 $fecha = $_GET['fecha'] ?? Date('Y-m-d');
+// $tipoVista = $_GET['tipoVista'] ?? null;
 
+// var_dump($_GET['tipoVista']);
+// die();
 
 $slotMinTime = '08:00:00';
 $slotMaxTime = '20:00:00';
@@ -49,7 +52,7 @@ $clinicas = new clinicas($conexion);
 
 $select = $box->getBox();
 
-$visitas = $visitas->getVisitas($boxSelect, $turnoSelect, $fecha, $_SESSION['clinica_id']);
+$visitas = $visitas->getVisitas($boxSelect, $turnoSelect, $fecha, $clinica_id);
 
 $clinicas = $clinicas->getClinicas();
 

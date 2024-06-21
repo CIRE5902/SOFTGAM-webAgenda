@@ -6,10 +6,13 @@ let turnoSelect = document.getElementById('turnoSelect');
 var slotMinTime = document.getElementById('slotMinTime').value;
 var slotMaxTime = document.getElementById('slotMaxTime').value;
 let fechaInput = document.getElementById('fechaInput').value;
+// let tipoVista = document.getElementById('tipoVista').value;
+
 let formAgenda = document.getElementById('formAgenda');
+let vistaCambiadaPorBoton = false;
 
 const visitasObj = visitas;
-console.table(visitasObj);
+// console.table(visitasObj);
 
 const allVisitas = visitasObj.map(visita => {
     const fechaInicio = visita.Fecha.split(' ')[0];
@@ -40,6 +43,7 @@ const allVisitas = visitasObj.map(visita => {
 let calendarCreado = false;
 let calendar;
 let currentDate = fechaInput ? new Date(fechaInput) : new Date();
+// let vistaInicial = tipoVista || 'timeGridDay';
 let currentDateFormatted = currentDate.toISOString().split('T')[0];
 
 let formattedDate;
@@ -50,17 +54,23 @@ let añoActual = currentDate.getFullYear();
 function inicializarCalendario() {
     if (!calendarCreado && calendarEl) {
         calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'timeGrid',
+            initialView: 'timeGridDay',
             initialDate: new Date(fechaInput),
             datesSet: function (dateInfo) {
-                console.log(dateInfo);
-                setTimeout(function(){
-                    let nuevoMes = dateInfo.start.getMonth() + 1;
-                    let nuevoAño = dateInfo.start.getFullYear();
+                // console.log(dateInfo);
+                setTimeout(function () {
+                    if (!vistaCambiadaPorBoton) {
+                        let nuevoMes = dateInfo.start.getMonth() + 1;
+                        let nuevoAño = dateInfo.start.getFullYear();
 
-                    if (nuevoMes !== mesActual || nuevoAño !== añoActual) {
-                        document.getElementById('fechaInput').setAttribute('value', currentDateFormatted);
-                        formAgenda.submit();
+                        if (nuevoMes !== mesActual || nuevoAño !== añoActual) {
+                            document.getElementById('fechaInput').setAttribute('value', currentDateFormatted);
+                            formAgenda.submit();
+                        }
+                        mesActual = nuevoMes;
+                        añoActual = nuevoAño;
+                    } else {
+                        vistaCambiadaPorBoton = false;
                     }
                 }, 0);
             },
@@ -76,10 +86,10 @@ function inicializarCalendario() {
             firstDay: 1,
             slotEventOverlap: false,
             views: {
-                timeGrid: { slotLabelFormat: { hour: 'numeric', minute: '2-digit', hour12: false } },
+                timeGridDay: { slotLabelFormat: { hour: 'numeric', minute: '2-digit', hour12: false } },
                 dayGridMonth: { titleFormat: { month: 'long', year: 'numeric' } },
-                timeGridWeek: { titleFormat: { month: 'long', year: 'numeric' } },
-                timeGridDay: { titleFormat: { day: 'numeric', month: 'long', weekday: 'long' } }
+                timeGridWeek: { slotLabelFormat: { hour: 'numeric', minute: '2-digit', hour12: false } },
+                // timeGridDay: { titleFormat: { day: 'numeric', month: 'long', weekday: 'long' } }
             },
             events: allVisitas,
             eventDidMount: function (info) {
@@ -179,20 +189,56 @@ function agregarContenidoDesktop() {
 function configurarEventosDeNavegacion() {
     document.querySelectorAll('#prevButtonMobile, #prevButtonDesktop').forEach(button => {
         button.onclick = () => {
-            let prevDate = calendar.getDate();
-            prevDate.setDate(prevDate.getDate() - 1);
-            calendar.gotoDate(prevDate);
-            currentDateFormatted = prevDate.toISOString().split('T')[0];
+            let view = calendar.view.type;
+            let currentDate = calendar.getDate();
+
+            // document.getElementById('tipoVista').value = view;
+
+            switch (view) {
+                case 'dayGridMonth':
+                    currentDate.setMonth(currentDate.getMonth() - 1);
+                    break;
+                case 'timeGridWeek':
+                    currentDate.setDate(currentDate.getDate() - 7);
+                    break;
+                case 'timeGridDay':
+                    // case 'timeGrid':
+                    currentDate.setDate(currentDate.getDate() - 1);
+                    break;
+                default:
+                    break;
+            }
+
+            calendar.gotoDate(currentDate);
+            currentDateFormatted = currentDate.toISOString().split('T')[0];
             updateCurrentDate();
         };
     });
 
     document.querySelectorAll('#nextButtonMobile, #nextButtonDesktop').forEach(button => {
         button.onclick = () => {
-            let nextDate = calendar.getDate();
-            nextDate.setDate(nextDate.getDate() + 1);
-            calendar.gotoDate(nextDate);
-            currentDateFormatted = nextDate.toISOString().split('T')[0];
+            let view = calendar.view.type;
+            let currentDate = calendar.getDate();
+
+            // document.getElementById('tipoVista').value = view;
+
+            switch (view) {
+                case 'dayGridMonth':
+                    currentDate.setMonth(currentDate.getMonth() + 1);
+                    break;
+                case 'timeGridWeek':
+                    currentDate.setDate(currentDate.getDate() + 7);
+                    break;
+                case 'timeGridDay':
+                    // case 'timeGrid':
+                    currentDate.setDate(currentDate.getDate() + 1);
+                    break;
+                default:
+                    break;
+            }
+
+            calendar.gotoDate(currentDate);
+            currentDateFormatted = currentDate.toISOString().split('T')[0];
             updateCurrentDate();
         };
     });
@@ -223,14 +269,16 @@ function comprobarTamanoPantalla() {
     inicializarCalendario();
     if (window.innerWidth < 858) {
         agregarContenidoMovil();
-        cambiarVistaCalendario('timeGrid');
+        cambiarVistaCalendario('timeGridDay');
     } else {
         agregarContenidoDesktop();
         document.getElementById('vistaMes').addEventListener('click', function () {
+            vistaCambiadaPorBoton = true;
             cambiarVistaCalendario('dayGridMonth');
         });
 
         document.getElementById('vistaSemana').addEventListener('click', function () {
+            vistaCambiadaPorBoton = true;
             cambiarVistaCalendario('timeGridWeek');
         });
 
@@ -250,7 +298,7 @@ function updateDoctor(date) {
     if (visitasMati.length > 0) {
         const doctorsMatiDiv = document.createElement("div");
         doctorsMatiDiv.className = "doctors-doctorsMati";
-        const visitaMati = visitasMati[0]; 
+        const visitaMati = visitasMati[0];
         doctorsMatiDiv.innerHTML = `
         <div class="doctors-doctorsMati-torn">
         <i class="fa-solid fa-sun solAgenda"> Mati </i>
@@ -267,7 +315,7 @@ function updateDoctor(date) {
     if (visitasTarda.length > 0) {
         const doctorsTardaDiv = document.createElement("div");
         doctorsTardaDiv.className = "doctors-doctorsTarda";
-        const visitaTarda = visitasTarda[0]; 
+        const visitaTarda = visitasTarda[0];
         doctorsTardaDiv.innerHTML = `
         <div class="doctors-doctorsTarda-torn">
         <i class="fa-solid fa-moon lunaAgenda"> Tarda </i>
